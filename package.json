@@ -1,0 +1,12 @@
+{
+  "name": "aoc2017",
+  "version": "1.0.0",
+  "description": "Advent of Code 2017",
+  "main": "day1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "whosoup",
+  "license": "ISC",
+  "dependencies": {}
+}

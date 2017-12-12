@@ -7,8 +7,10 @@ class Node {
   constructor(depth = 0) {
     this.depth = depth
     this.siblings = [null, null, null, null, null, null]
-    if (!Node.root)
+    if (!Node.root) {
       Node.root = this
+      Node.tail = this
+    }
   }
 
   move(direction) {
@@ -28,9 +30,7 @@ class Node {
   }
 
   static createSubring() {
-    let el = Node.root
-    while (el.siblings[0] != null)
-      el = el.siblings[0]
+    let el = Node.tail
 
     // each ring has depth * 6 elements
     let depth = el.depth + 1
@@ -40,6 +40,9 @@ class Node {
     let initial = []
     for (let i = 0; i < n; i++)
       initial.push(new Node(depth))
+
+    // set new tail
+    Node.tail = initial[0]
 
     // expand each of the six sides by placing the new elements on the face at direction "i"
     for (let i = 0; i < 6; i++) {

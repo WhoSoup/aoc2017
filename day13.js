@@ -12,8 +12,10 @@ function severity(delay = 0) {
   return severity
 }
 
+console.time("c")
 let i = 0
 while (severity(i) > 0)
   i++
 
 console.log(severity(0), i);
+console.timeEnd("c")

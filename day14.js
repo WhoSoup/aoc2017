@@ -1,13 +1,15 @@
 let input = "xlqgujun", grid = [], used = 0
 for (let i = 0; i < 128; i++) {
-  let h = hash(input + "-" + i)
-  let b = h.split("").map(x => ("0000"+ parseInt(x, 16).toString(2)).substr(-4)).join("") // convert hash to binary
-  used += b.split("").filter(x => x == 1).length // count 1s
-  grid.push(b.split("")) // add to grid
+  let h = hash(input + "-" + i).split("").map(x => parseInt(x, 16))
+  used += h.map(countBits).reduce((a,b) => a+b)
+  grid.push(h.map(x => ("0000"+ x.toString(2)).substr(-4)).join("").split("")) // convert hash to binary
 }
 console.log(used);
 
 let c = (x,y) => (x < 0 || y < 0 || x > 127 || y > 127) ? 0 : grid[x][y]
+function countBits(num) {
+  return num > 0 ? (num % 2) + countBits(num >> 1) : 0
+}
 
 function removeGroup(x,y) {
   if (c(x, y) == 0) return

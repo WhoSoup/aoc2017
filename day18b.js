@@ -7,7 +7,6 @@ class Prog {
     this.pid = pid
     this.pos = 0
     this.queue = []
-    this.partner = null
     this.sent = 0
   }
 
@@ -34,7 +33,7 @@ class Prog {
   run () {
     this.waiting = false
     this[inp[this.pos].substr(0,3)](...inp[this.pos].substr(4).split(" "))
-    return ++this.pos
+    this.pos++
   }
 }
 
